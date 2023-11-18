@@ -2,25 +2,24 @@ def movimentacao(p_y):
     if p_y >= 276:
         p_y = 276
         gravidade = 0
-        jumping = False
-    elif p_y < 200 and p_y:
-        gravidade = 3
-        jumping = True
-    elif p_y < 220:
-        gravidade = 9
-        jumping = True
+        jump = True
+
     keys = pygame.key.get_pressed()
     if keys[pygame.K_SPACE]:
-        p_y -= pulo
+        jump = False
     
-    p_y += gravidade
+    
+    if jump and p_y > 180:
+        p_y -= 10
     return p_y
 
+ 
 
 
 
 import pygame
 from pygame import *
+import random
 
 #variaveis da tela
 t_x = 600
@@ -28,9 +27,8 @@ t_y = 400
 #variáveis do player
 p_x = 100
 p_y = 276
-#outras variáveis
-pulo = 20
-gravidade = 3
+
+
 
 pygame.init()
 screen = pygame.display.set_mode((t_x, t_y))
